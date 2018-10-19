@@ -11,6 +11,7 @@ class Token(models.Model):
     #address of the ethereum smart contract that holds the token
 
 class Holder(models.Model):
+	user_type = models.CharField(max_length=150)
 	token = models.ForeignKey(Token, on_delete=models.CASCADE)
 	percent_stake = models.DecimalField(max_digits=3, decimal_places=2)
 	#vested = models.BooLeanField()
