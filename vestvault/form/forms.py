@@ -1,19 +1,32 @@
 from django import forms
+from .models import Token, Holder
 
-class TokenForm(forms.Form):
-    company_name = forms.CharField(max_length=150)
-    token_name = forms.CharField(max_length=150)
-    token_supply = forms.BigIntegerField()
-    address = forms.TextField()
+class TokenForm(forms.ModelForm):
+    class Meta:
+        model = Token
+        fields = ['company_name', 'token_name', 'token_supply', 'address']
+    # company_name = forms.CharField(
+    #     widget=forms.TextInput(
+    #         attrs={
+    #             'style': 'border-color: blue;',
+    #             'placeholder': 'ICO company name'
+    #         }
+    #     )
+    # )
+    # token_name = forms.CharField()
+    # token_supply = forms.IntegerField()
+    # address = forms.CharField(
+    #     widget=forms.TextInput(
+    #         attrs={
+    #             'style': 'border-color: blue;',
+    #             'placeholder': 'ETH Address'
+    #         }
+    #     )
+    # )
 
-class HolderForm(forms.Form):
-	percent_stake = forms.DecimalField(max_digits=3, decimal_places=2)
+class HolderForm(forms.ModelForm):
+    class Meta:
+        model = Holder
+        fields = ['percent_stake']
 
-
-    # def clean(self):
-    #     cleaned_data = super(ContactForm, self).clean()
-    #     name = cleaned_data.get('name')
-    #     email = cleaned_data.get('email')
-    #     message = cleaned_data.get('message')
-    #     if not name and not email and not message:
-    #         raise forms.ValidationError('You have to write something!')
+HolderFormSet = forms.inlineformset_factory(Token, Holder, form=HolderForm, extra=3)

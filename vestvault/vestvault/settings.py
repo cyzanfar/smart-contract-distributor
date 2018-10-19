@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -66,12 +67,12 @@ TEMPLATES = [
             ],
         },
     },
-    {
-        # 'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        # 'DIRS': [
-        #     '/home/html/jinja2',
-        # ],
-    },
+    # {
+    #     # 'BACKEND': 'django.template.backends.jinja2.Jinja2',
+    #     # 'DIRS': [
+    #     #     '/home/html/jinja2',
+    #     # ],
+    # },
 ]
 
 WSGI_APPLICATION = 'vestvault.wsgi.application'
@@ -83,7 +84,11 @@ WSGI_APPLICATION = 'vestvault.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'poojakale',
+        'NAME': 'postgres',
+        'USER': 'cyrusghazanfar',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 

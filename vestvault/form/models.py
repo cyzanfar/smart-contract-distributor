@@ -1,11 +1,10 @@
 from django.db import models
-from django import forms
 
 class Token(models.Model):
     company_name = models.CharField(max_length=150)
     token_name = models.CharField(max_length=150)
     token_supply = models.BigIntegerField()
-    address = models.TextField()
+    address = models.CharField(max_length=150)
     #name
     #value
     #initial token holders
