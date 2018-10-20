@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'form.apps.FormConfig',
+    'contract.apps.ContractConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -67,13 +68,13 @@ TEMPLATES = [
             ],
         },
     },
-    # {
-    #     # 'BACKEND': 'django.template.backends.jinja2.Jinja2',
-    #     # 'DIRS': [
-    #     #     '/home/html/jinja2',
-    #     # ],
-    # },
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': []
+}
 
 WSGI_APPLICATION = 'vestvault.wsgi.application'
 
