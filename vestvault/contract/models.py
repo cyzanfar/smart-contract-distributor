@@ -2,8 +2,8 @@ from django.db import models
 
 class Token(models.Model):
     company_name = models.CharField(max_length=150)
-    token_name = models.CharField(max_length=150)
-    token_supply = models.BigIntegerField()
+    name = models.CharField(max_length=150)
+    supply = models.BigIntegerField()
     address = models.CharField(max_length=150)
 
 

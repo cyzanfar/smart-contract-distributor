@@ -4,7 +4,7 @@ from .models import Token, Holder
 class TokenForm(forms.ModelForm):
     class Meta:
         model = Token
-        fields = ['company_name', 'token_name', 'token_supply', 'address']
+        fields = ['company_name', 'name', 'supply', 'address']
 
 class HolderForm(forms.ModelForm):
     class Meta:

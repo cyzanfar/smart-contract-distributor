@@ -2,26 +2,28 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from contract.models import Token, Holder
 
-class TokenSerializer(serializers.ModelSerializer):    
-    holders = serializers.PrimaryKeyRelatedField(
-        many=True,
-        queryset=Holder.objects.all()
-    )
+class HolderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Holder
+        fields = ('id', 'percent_stake', 'user_type')
+
+class TokenSerializer(serializers.ModelSerializer):
+    holders = HolderSerializer(many=True)
 
     class Meta:
         model = Token
         fields = (
-            'id', 'company_name', 'token_name',
-            'token_supply', 'address', 'holders'
+            'id', 'company_name', 'name',
+            'supply', 'address', 'holders'
         )
 
-
-class HolderSerializer(serializers.ModelSerializer):
-    token = serializers.CharField(source='token.pk')
-
-    class Meta:
-        model = Token
-        fields = ('id', 'user_type', 'token', 'percent_stake')
+    def create(self, validated_data):
+        import pdb; pdb.set_trace()
+        holders_data = validated_data.pop('holders')
+        token = Token.objects.create(**validated_data)
+        for holder_data in holders_data:
+            Holder.objects.create(token=token, **holder_data)
+        return token
 
 class UserSerializer(serializers.ModelSerializer):
     tokens = serializers.PrimaryKeyRelatedField(
