@@ -18,7 +18,6 @@ class TokenSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        import pdb; pdb.set_trace()
         holders_data = validated_data.pop('holders')
         token = Token.objects.create(**validated_data)
         for holder_data in holders_data:
